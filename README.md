@@ -1,4 +1,4 @@
-# Go API Project Scaffolding Script - CMPS4232 Test #2
+# CMPS4232 - Test #2
 
 This repository contains a bash shell script created for the CMPS4232 Test #2 Preparatory Task. The script, named `make-go-dir`, automates the setup of a standard directory structure for a new Go API project.
 
