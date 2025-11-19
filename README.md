@@ -1,37 +1,82 @@
-# CMPS4232 - Test #2
+# CMPS4232 - Test #2: Go Project Setup Script
 
-This repository contains a bash shell script created for the CMPS4232 Test #2 Preparatory Task. The script, named `make-go-dir`, automates the setup of a standard directory structure for a new Go API project.
+This repository contains a Bash script, `make-go-dir`, which automates creating a standard directory structure for a Go API project.
 
-## Overview
+## Purpose
 
-Developing a new project involves a repetitive setup process. This script streamlines that process by creating a conventional Go project layout, initializing a `go.mod` file, and providing a sample `main.go` file, allowing the developer to start coding features immediately.
+Creating a new Go project usually involves repetitive setup. This script streamlines the process by generating directories, initializing `go.mod`, and adding a sample `main.go` file so you can start coding immediately.
 
-## Features
+## Script Features
 
-The script performs the following actions as per the assignment requirements:
+* **Argument Validation**
+  Requires exactly two arguments:
 
--   **Argument Validation**: Ensures that the user provides exactly two arguments: a project name and a module identifier.
--   **User Confirmation**: Prompts the user for confirmation before creating any files or directories, preventing accidental changes.
--   **Directory Scaffolding**: Creates a standardized project structure including `bin`, `cmd/api`, `internals`, `migrations`, and `remote` directories.
--   **File Generation**: Creates `go.mod`, `make-file`, and a `main.go` file inside `cmd/api/`.
--   **Go Module Initialization**: Populates the `go.mod` file with the correct module path using the provided project name and identifier.
--   **Boilerplate Code**: Writes a simple "Hello world!" program to `main.go` to ensure the project is runnable out-of-the-box.
--   **User Guidance**: Outputs a final message instructing the user how to compile and run their new project.
+  1. Project name (top-level directory)
+  2. Module identifier (for `go.mod`)
+     If the arguments are missing or incorrect, the script shows usage instructions and exits.
+
+* **User Confirmation**
+  Prompts before creating directories:
+
+  ```
+  I am about to create a directory structure named '<project-name>'.
+  Do you want me to continue? [Yes/no]
+  ```
+
+  * `Yes` → creates directories and files
+  * `no` → prints `Abort.` and exits
+
+* **Directory Structure Creation**
+
+  ```
+  .
+  |-- bin
+  |-- cmd
+  |   |-- api
+  |       |-- main.go
+  |-- internals
+  |-- migrations
+  |-- remote
+  |-- go.mod
+  |-- make-file
+  ```
+
+* **File Initialization**
+
+  * `main.go` contains a "Hello world!" program
+  * `go.mod` uses the module identifier (`<project-name>.<module-identifier>`)
+
+* **Completion Message**
+
+  ```
+  I have created a main.go file for you to test the directory structure.
+  Type go run ./cmd/api at the root directory of your project to test your project.
+  Thank you.
+  ```
 
 ## Prerequisites
 
-Before running this script, you must have the following installed on your system:
+* Linux or macOS with Bash
+* Go installed and available in your PATH
 
--   A Linux-based environment (like Ubuntu Server) with a Bash shell.
--   The Go programming language toolchain.
+## Usage
 
-## How to Use
+1. Make the script executable:
 
-Follow these steps to set up a new Go project using the script.
+   ```bash
+   chmod +x make-go-dir
+   ```
 
-### 1. Make the Script Executable
+2. Run the script with your project name and module identifier:
 
-First, you need to give the script execution permissions.
+   ```bash
+   ./make-go-dir <project-name> <module-identifier>
+   ```
 
-```bash
-chmod +x make-go-dir
+   Example:
+
+   ```bash
+   ./make-go-dir karpbox umana-amilcar.net
+   ```
+
+This generates a ready-to-run Go project structure with a sample `main.go`.
